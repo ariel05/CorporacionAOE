@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.view.xlsx;
+package com.corporacionaoe.app.view.xlsx;
 
 import java.util.Map;
 
@@ -16,8 +16,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Factura;
-import com.sistemadefacturacion.springboot.app.models.entity.ItemFactura;
+import com.corporacionaoe.app.models.entity.Factura;
+import com.corporacionaoe.app.models.entity.ItemFactura;
 
 @Component("factura/ver.xlsx")
 public class FacturaXlsxView extends AbstractXlsxView {

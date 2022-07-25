@@ -1,11 +1,11 @@
-package com.sistemadefacturacion.springboot.app.models.dao;
+package com.corporacionaoe.app.models.dao;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Producto;
+import com.corporacionaoe.app.models.entity.Producto;
 
 public interface IProductoDao extends CrudRepository<Producto, Long>{
 	

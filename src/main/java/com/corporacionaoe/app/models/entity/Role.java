@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.models.entity;
+package com.corporacionaoe.app.models.entity;
 
 import java.io.Serializable;
 

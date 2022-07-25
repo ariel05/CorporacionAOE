@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.view.xml;
+package com.corporacionaoe.app.view.xml;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Cliente;
 
 @Component("listar.xml")
 public class ClienteListXmlView extends MarshallingView{

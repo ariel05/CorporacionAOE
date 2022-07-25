@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.util.paginator;
+package com.corporacionaoe.app.util.paginator;
 
 import java.util.ArrayList;
 import java.util.List;

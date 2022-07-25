@@ -1,9 +1,9 @@
-package com.sistemadefacturacion.springboot.app.models.dao;
+package com.corporacionaoe.app.models.dao;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Cliente;
 
 public interface IClienteDao extends PagingAndSortingRepository<Cliente, Long>{
 	

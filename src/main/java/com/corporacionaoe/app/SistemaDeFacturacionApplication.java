@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app;
+package com.corporacionaoe.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.sistemadefacturacion.springboot.app.models.service.IUploadFileService;
+import com.corporacionaoe.app.models.service.IUploadFileService;
 
 @SpringBootApplication
 public class SistemaDeFacturacionApplication implements CommandLineRunner{

@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.view.pdf;
+package com.corporacionaoe.app.view.pdf;
 
 import java.awt.Color;
 import java.util.Locale;
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
+import com.corporacionaoe.app.models.entity.Factura;
+import com.corporacionaoe.app.models.entity.ItemFactura;
 import com.lowagie.text.Document;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.sistemadefacturacion.springboot.app.models.entity.Factura;
-import com.sistemadefacturacion.springboot.app.models.entity.ItemFactura;
 
 //Fuente
 //https://itextpdf.com/en/resources/examples

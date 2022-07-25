@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.models.service;
+package com.corporacionaoe.app.models.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sistemadefacturacion.springboot.app.models.dao.IUsuarioDao;
-import com.sistemadefacturacion.springboot.app.models.entity.Role;
-import com.sistemadefacturacion.springboot.app.models.entity.Usuario;
+import com.corporacionaoe.app.models.dao.IUsuarioDao;
+import com.corporacionaoe.app.models.entity.Role;
+import com.corporacionaoe.app.models.entity.Usuario;
 
 //Spring security provee la interfaz para trabajar con JPA, JDB, etc.
 @Service("jpaUserDetailsService")

@@ -1,13 +1,13 @@
-package com.sistemadefacturacion.springboot.app.models.service;
+package com.corporacionaoe.app.models.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
-import com.sistemadefacturacion.springboot.app.models.entity.Factura;
-import com.sistemadefacturacion.springboot.app.models.entity.Producto;
+import com.corporacionaoe.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Factura;
+import com.corporacionaoe.app.models.entity.Producto;
 
 public interface IClienteService {
 

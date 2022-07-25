@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.auth.handler;
+package com.corporacionaoe.app.auth.handler;
 
 import java.io.IOException;
 

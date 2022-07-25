@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.view.json;
+package com.corporacionaoe.app.view.json;
 
 import java.util.Map;
 
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Cliente;
 
 @Component("listar.json")
 public class ClienteListJsonView extends MappingJackson2JsonView{

@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.view.csv;
+package com.corporacionaoe.app.view.csv;
 
 import java.util.Map;
 
@@ -12,7 +12,7 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Cliente;
 
 @Component("listar.csv")
 public class ClienteCsvView extends AbstractView{

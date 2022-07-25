@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.models.service;
+package com.corporacionaoe.app.models.service;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sistemadefacturacion.springboot.app.models.dao.IClienteDao;
-import com.sistemadefacturacion.springboot.app.models.dao.IFacturaDao;
-import com.sistemadefacturacion.springboot.app.models.dao.IProductoDao;
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
-import com.sistemadefacturacion.springboot.app.models.entity.Factura;
-import com.sistemadefacturacion.springboot.app.models.entity.Producto;
+import com.corporacionaoe.app.models.dao.IClienteDao;
+import com.corporacionaoe.app.models.dao.IFacturaDao;
+import com.corporacionaoe.app.models.dao.IProductoDao;
+import com.corporacionaoe.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Factura;
+import com.corporacionaoe.app.models.entity.Producto;
 
 @Service(value = "clienteService")
 public class ClienteServiceImp implements IClienteService{

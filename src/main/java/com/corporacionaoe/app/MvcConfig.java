@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app;
+package com.corporacionaoe.app;
 
 import java.util.Locale;
 
@@ -71,7 +71,7 @@ public class MvcConfig implements WebMvcConfigurer{
 	@Bean
 	public Jaxb2Marshaller  jaxb2Marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(new Class[] { com.sistemadefacturacion.springboot.app.view.xml.ClienteList.class});
+		marshaller.setClassesToBeBound(new Class[] { com.corporacionaoe.app.view.xml.ClienteList.class});
 		
 		return marshaller;
 	}

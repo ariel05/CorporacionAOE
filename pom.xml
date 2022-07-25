@@ -7,7 +7,7 @@
 		<version>2.6.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sistemadefacturacion.springboot.app</groupId>
+	<groupId>com.corporacionaoe.app</groupId>
 	<artifactId>sistema-de-facturacion</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sistema-de-facturacion</name>

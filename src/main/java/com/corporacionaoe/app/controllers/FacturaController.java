@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.controllers;
+package com.corporacionaoe.app.controllers;
 
 import java.util.List;
 import java.util.Map;
@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
-import com.sistemadefacturacion.springboot.app.models.entity.Factura;
-import com.sistemadefacturacion.springboot.app.models.entity.ItemFactura;
-import com.sistemadefacturacion.springboot.app.models.entity.Producto;
-import com.sistemadefacturacion.springboot.app.models.service.IClienteService;
+import com.corporacionaoe.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Factura;
+import com.corporacionaoe.app.models.entity.ItemFactura;
+import com.corporacionaoe.app.models.entity.Producto;
+import com.corporacionaoe.app.models.service.IClienteService;
 
 @Secured("ROLE_ADMIN")
 @Controller

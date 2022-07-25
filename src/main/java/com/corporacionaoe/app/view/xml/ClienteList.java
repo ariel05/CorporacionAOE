@@ -1,11 +1,11 @@
-package com.sistemadefacturacion.springboot.app.view.xml;
+package com.corporacionaoe.app.view.xml;
 
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.entity.Cliente;
 
 @XmlRootElement(name="clientesList")
 public class ClienteList {

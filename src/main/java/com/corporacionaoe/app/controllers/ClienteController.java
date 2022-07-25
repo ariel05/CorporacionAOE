@@ -1,4 +1,4 @@
-package com.sistemadefacturacion.springboot.app.controllers;
+package com.corporacionaoe.app.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -42,11 +42,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sistemadefacturacion.springboot.app.models.entity.Cliente;
-import com.sistemadefacturacion.springboot.app.models.service.IClienteService;
-import com.sistemadefacturacion.springboot.app.models.service.IUploadFileService;
-import com.sistemadefacturacion.springboot.app.util.paginator.PageRender;
-import com.sistemadefacturacion.springboot.app.view.xml.ClienteList;
+import com.corporacionaoe.app.models.entity.Cliente;
+import com.corporacionaoe.app.models.service.IClienteService;
+import com.corporacionaoe.app.models.service.IUploadFileService;
+import com.corporacionaoe.app.util.paginator.PageRender;
+import com.corporacionaoe.app.view.xml.ClienteList;
 
 @Controller
 @SessionAttributes("cliente")
