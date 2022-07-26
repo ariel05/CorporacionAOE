@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.corporacionaoe.app.models.service.IUploadFileService;
 
 @SpringBootApplication
-public class SistemaDeFacturacionApplication implements CommandLineRunner{
+public class CorporacionAOEApplication implements CommandLineRunner{
 
 	@Autowired
 	private IUploadFileService uploadFileService;
@@ -18,7 +18,7 @@ public class SistemaDeFacturacionApplication implements CommandLineRunner{
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaDeFacturacionApplication.class, args);
+		SpringApplication.run(CorporacionAOEApplication.class, args);
 	}
 
 	@Override

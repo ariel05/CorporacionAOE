@@ -31,7 +31,7 @@ public class JpaUserDetailsService implements UserDetailsService{
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = usuarioDao.findByUsername(username);
+		Usuario usuario = usuarioDao.findByEmail(username);
 		
 		if(usuario == null) {
 			logger.error("Error login: no existe el usuario '" + username + "'");

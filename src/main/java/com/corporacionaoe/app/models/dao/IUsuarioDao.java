@@ -6,5 +6,5 @@ import com.corporacionaoe.app.models.entity.Usuario;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, Long>{
 
-	public Usuario findByUsername(String username);
+	public Usuario findByEmail(String email);
 }
