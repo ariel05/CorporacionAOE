@@ -271,11 +271,11 @@ public enum CountryEnum {
 	public String getName() {
 		return name;
 	}
-    public static CountryEnum[] getAllCountries() {
+    public static List<CountryEnum> getAllCountries() {
     	
     	List<CountryEnum> allCountries = Arrays.stream(CountryEnum.values()).collect(Collectors.toList());
     	
-    	return (CountryEnum[]) allCountries.toArray(new CountryEnum[allCountries.size()]);
+    	return allCountries;//(CountryEnum[]) allCountries.toArray(new CountryEnum[allCountries.size()]);
     }
     
 }

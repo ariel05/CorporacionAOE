@@ -25,90 +25,44 @@ public class Member implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private CountryEnum country;
 	//RM 1v1
-	private Integer rm1v1Rated;
-	private Integer rm1v1highestRated;
-	private Integer rm1v1Streak;
-	private Integer rm1v1NumWin;
-	private Integer rm1v1NumLosses;
-	private Integer rm1v1MaxRated;
-	private Integer rm1v1AvgRated;
-	private Integer rm1v1AvgWin;
-	//RM 1v1
-	private Integer rmTgRated;
-	private Integer rmTghighestRated;
-	private Integer rmTgStreak;
-	private Integer rmTgNumWin;
-	private Integer rmTgNumLosses;
-	private Integer rmTgMaxRated;
-	private Integer rmTgAvgRated;
-	private Integer rmTgAvgWin;
-	//RM 1v1
-	private Integer ew1v1Rated;
-	private Integer ew1v1highestRated;
-	private Integer ew1v1Streak;
-	private Integer ew1v1NumWin;
-	private Integer ew1v1NumLosses;
-	private Integer ew1v1MaxRated;
-	private Integer ew1v1AvgRated;
-	private Integer ew1v1AvgWin;
-	//RM 1v1
-	private Integer ewTgRated;
-	private Integer ewTghighestRated;
-	private Integer ewTgStreak;
-	private Integer ewTgNumWin;
-	private Integer ewTgNumLosses;
-	private Integer ewTgMaxRated;
-	private Integer ewTgAvgRated;
-	private Integer ewTgAvgWin;
+    private Integer rm1v1Rated = 0;
+    private Integer rm1v1highestRated = 0;
+    private Integer rm1v1Streak = 0;
+    private Integer rm1v1NumWin = 0;
+    private Integer rm1v1NumLosses = 0;
+    private Integer rm1v1AvgRated = 0;
+    private Integer rm1v1AvgWin = 0;
+    private Integer rm1v1TotalGames = 0;
+    //RM 1v1
+    private Integer rmTgRated = 0;
+    private Integer rmTghighestRated = 0;
+    private Integer rmTgStreak = 0;
+    private Integer rmTgNumWin = 0;
+    private Integer rmTgNumLosses = 0;
+    private Integer rmTgAvgRated = 0;
+    private Integer rmTgAvgWin = 0;
+    private Integer rmTgTotalGames = 0;
+    //RM 1v1
+    private Integer ew1v1Rated = 0;
+    private Integer ew1v1highestRated = 0;
+    private Integer ew1v1Streak = 0;
+    private Integer ew1v1NumWin = 0;
+    private Integer ew1v1NumLosses = 0;
+    private Integer ew1v1AvgRated = 0;
+    private Integer ew1v1AvgWin = 0;
+    private Integer ew1v1TotalGames = 0;
+    //RM 1v1
+    private Integer ewTgRated = 0;
+    private Integer ewTghighestRated = 0;
+    private Integer ewTgStreak = 0;
+    private Integer ewTgNumWin = 0;
+    private Integer ewTgNumLosses = 0;
+    private Integer ewTgAvgRated = 0;
+    private Integer ewTgAvgWin = 0;
+    private Integer ewTgTotalGames = 0;
 	
 	public Member() {}
 	
-	public Member(Integer profileId, Integer steamId, String name, CountryEnum country, Integer rm1v1Rated,
-			Integer rm1v1highestRated, Integer rm1v1Streak, Integer rm1v1NumWin, Integer rm1v1NumLosses,
-			Integer rm1v1MaxRated, Integer rm1v1AvgRated, Integer rm1v1AvgWin, Integer rmTgRated,
-			Integer rmTghighestRated, Integer rmTgStreak, Integer rmTgNumWin, Integer rmTgNumLosses,
-			Integer rmTgMaxRated, Integer rmTgAvgRated, Integer rmTgAvgWin, Integer ew1v1Rated,
-			Integer ew1v1highestRated, Integer ew1v1Streak, Integer ew1v1NumWin, Integer ew1v1NumLosses,
-			Integer ew1v1MaxRated, Integer ew1v1AvgRated, Integer ew1v1AvgWin, Integer ewTgRated,
-			Integer ewTghighestRated, Integer ewTgStreak, Integer ewTgNumWin, Integer ewTgNumLosses,
-			Integer ewTgMaxRated, Integer ewTgAvgRated, Integer ewTgAvgWin) {
-		this.profileId = profileId;
-		this.steamId = steamId;
-		this.name = name;
-		this.country = country;
-		this.rm1v1Rated = rm1v1Rated;
-		this.rm1v1highestRated = rm1v1highestRated;
-		this.rm1v1Streak = rm1v1Streak;
-		this.rm1v1NumWin = rm1v1NumWin;
-		this.rm1v1NumLosses = rm1v1NumLosses;
-		this.rm1v1MaxRated = rm1v1MaxRated;
-		this.rm1v1AvgRated = rm1v1AvgRated;
-		this.rm1v1AvgWin = rm1v1AvgWin;
-		this.rmTgRated = rmTgRated;
-		this.rmTghighestRated = rmTghighestRated;
-		this.rmTgStreak = rmTgStreak;
-		this.rmTgNumWin = rmTgNumWin;
-		this.rmTgNumLosses = rmTgNumLosses;
-		this.rmTgMaxRated = rmTgMaxRated;
-		this.rmTgAvgRated = rmTgAvgRated;
-		this.rmTgAvgWin = rmTgAvgWin;
-		this.ew1v1Rated = ew1v1Rated;
-		this.ew1v1highestRated = ew1v1highestRated;
-		this.ew1v1Streak = ew1v1Streak;
-		this.ew1v1NumWin = ew1v1NumWin;
-		this.ew1v1NumLosses = ew1v1NumLosses;
-		this.ew1v1MaxRated = ew1v1MaxRated;
-		this.ew1v1AvgRated = ew1v1AvgRated;
-		this.ew1v1AvgWin = ew1v1AvgWin;
-		this.ewTgRated = ewTgRated;
-		this.ewTghighestRated = ewTghighestRated;
-		this.ewTgStreak = ewTgStreak;
-		this.ewTgNumWin = ewTgNumWin;
-		this.ewTgNumLosses = ewTgNumLosses;
-		this.ewTgMaxRated = ewTgMaxRated;
-		this.ewTgAvgRated = ewTgAvgRated;
-		this.ewTgAvgWin = ewTgAvgWin;
-	}
 	public Integer getProfileId() {
 		return profileId;
 	}
@@ -163,12 +117,6 @@ public class Member implements Serializable{
 	public void setRm1v1NumLosses(Integer rm1v1NumLosses) {
 		this.rm1v1NumLosses = rm1v1NumLosses;
 	}
-	public Integer getRm1v1MaxRated() {
-		return rm1v1MaxRated;
-	}
-	public void setRm1v1MaxRated(Integer rm1v1MaxRated) {
-		this.rm1v1MaxRated = rm1v1MaxRated;
-	}
 	public Integer getRm1v1AvgRated() {
 		return rm1v1AvgRated;
 	}
@@ -210,12 +158,6 @@ public class Member implements Serializable{
 	}
 	public void setRmTgNumLosses(Integer rmTgNumLosses) {
 		this.rmTgNumLosses = rmTgNumLosses;
-	}
-	public Integer getRmTgMaxRated() {
-		return rmTgMaxRated;
-	}
-	public void setRmTgMaxRated(Integer rmTgMaxRated) {
-		this.rmTgMaxRated = rmTgMaxRated;
 	}
 	public Integer getRmTgAvgRated() {
 		return rmTgAvgRated;
@@ -259,12 +201,6 @@ public class Member implements Serializable{
 	public void setEw1v1NumLosses(Integer ew1v1NumLosses) {
 		this.ew1v1NumLosses = ew1v1NumLosses;
 	}
-	public Integer getEw1v1MaxRated() {
-		return ew1v1MaxRated;
-	}
-	public void setEw1v1MaxRated(Integer ew1v1MaxRated) {
-		this.ew1v1MaxRated = ew1v1MaxRated;
-	}
 	public Integer getEw1v1AvgRated() {
 		return ew1v1AvgRated;
 	}
@@ -307,12 +243,6 @@ public class Member implements Serializable{
 	public void setEwTgNumLosses(Integer ewTgNumLosses) {
 		this.ewTgNumLosses = ewTgNumLosses;
 	}
-	public Integer getEwTgMaxRated() {
-		return ewTgMaxRated;
-	}
-	public void setEwTgMaxRated(Integer ewTgMaxRated) {
-		this.ewTgMaxRated = ewTgMaxRated;
-	}
 	public Integer getEwTgAvgRated() {
 		return ewTgAvgRated;
 	}
@@ -328,6 +258,44 @@ public class Member implements Serializable{
 	public Long getId() {
 		return id;
 	}
+
+	public Integer getRm1v1TotalGames() {
+		return rm1v1TotalGames;
+	}
+
+	public void setRm1v1TotalGames(Integer rm1v1TotalGames) {
+		this.rm1v1TotalGames = rm1v1TotalGames;
+	}
+
+	public Integer getRmTgTotalGames() {
+		return rmTgTotalGames;
+	}
+
+	public void setRmTgTotalGames(Integer rmTgTotalGames) {
+		this.rmTgTotalGames = rmTgTotalGames;
+	}
+
+	public Integer getEw1v1TotalGames() {
+		return ew1v1TotalGames;
+	}
+
+	public void setEw1v1TotalGames(Integer ew1v1TotalGames) {
+		this.ew1v1TotalGames = ew1v1TotalGames;
+	}
+
+	public Integer getEwTgTotalGames() {
+		return ewTgTotalGames;
+	}
+
+	public void setEwTgTotalGames(Integer ewTgTotalGames) {
+		this.ewTgTotalGames = ewTgTotalGames;
+	}
 	
+	public void updateWinRated() {
+		rm1v1AvgWin = (rm1v1NumWin/rm1v1TotalGames) * 100;
+		rmTgAvgRated = (rmTgNumWin/rmTgTotalGames) * 100;
+		ew1v1AvgRated = (ew1v1NumWin/ew1v1TotalGames) * 100;
+		ewTgAvgRated = (ewTgNumWin/ewTgTotalGames) * 100;
+	}
 
 }

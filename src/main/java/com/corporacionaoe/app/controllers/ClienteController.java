@@ -45,6 +45,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.corporacionaoe.app.models.entity.Cliente;
 import com.corporacionaoe.app.models.service.IClienteService;
 import com.corporacionaoe.app.models.service.IUploadFileService;
+import com.corporacionaoe.app.models.service.MemberService;
 import com.corporacionaoe.app.util.paginator.PageRender;
 import com.corporacionaoe.app.view.xml.ClienteList;
 
@@ -53,6 +54,9 @@ import com.corporacionaoe.app.view.xml.ClienteList;
 public class ClienteController {
 
 	protected final Log logger = LogFactory.getLog(this.getClass());
+	
+	@Autowired
+	private MemberService ms;
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -99,6 +103,8 @@ public class ClienteController {
 	@RequestMapping(value = {"/listar", "/"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name="page", defaultValue = "0") int page, Model model,
 			Authentication authentication, HttpServletRequest request, Locale locale) {
+		
+		ms.autoUpdate();
 		
 		if(authentication != null) {
 			logger.info("Usuario autenticado, username: ".concat(authentication.getName()));

@@ -22,4 +22,14 @@ public interface MemberService {
 	public void delete(Long id);
 	
 	public List<Member> findByNombre(String term);
+	
+	public void autoUpdate();
+	
+	public void autoUpdateRm1v1(Member member, String profileId);
+
+	public void autoUpdateRmTg(Member member, String profileId);
+	
+	public void autoUpdateEw1v1(Member member, String profileId);
+
+	public void autoUpdateEwTg(Member member, String profileId);
 }
