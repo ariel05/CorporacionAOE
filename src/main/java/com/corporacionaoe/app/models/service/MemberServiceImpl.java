@@ -43,8 +43,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void save(Member cliente) {
-		// TODO Auto-generated method stub
+	public void save(Member member) {
+		memberDao.save(member);
 		
 	}
 
@@ -74,7 +74,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public void autoUpdate() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Map<String, Map<String, String>>> clanes;
@@ -83,7 +82,7 @@ public class MemberServiceImpl implements MemberService {
 			if(!memberRest.getForObject(Constantes.AOE_CLAN_API, String.class).isEmpty()) {
 				clanes = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_CLAN_API, String.class), Map.class);
 				if(clanes != null) {
-					miembros = clanes.get("CORP").get("players");
+					miembros = clanes.get(Constantes.CLAN).get(Constantes.PLAYERS);
 					for (Entry<String, String> entry : miembros.entrySet()) {
 					    String key = entry.getKey();
 					    Object value = entry.getValue();
@@ -93,34 +92,51 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	private void autoUpdateDiverter(String id, Map<String, String> player) {
-		
+	@SuppressWarnings("unchecked")
+	@Transactional
+	private void autoUpdateDiverter(String profileId, Map<String, String> player) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		Map<String, String> laderboardType;
 		Member member = null;
-		if(memberDao.existByProfileId(Integer.valueOf(id))) {
-			member = memberDao.findByProfileId(Integer.valueOf(id));
+		if(memberDao.existByProfileId(Integer.valueOf(profileId))) {
+			member = memberDao.findByProfileId(Integer.valueOf(profileId));
 		}
 		else {
 			member = new Member();
 		}
-		member.setProfileId(Integer.valueOf(id));
-		member.setName(player.get("n"));
-		member.setCountry(getCountry(player.get("c")));
-		if(!player.get("r").isEmpty()) {
-			
+		member.setProfileId(Integer.valueOf(profileId));
+		member.setName(player.get(Constantes.NAME_MAP_KEY));
+		member.setCountry(CountryEnum.getCountry(player.get(Constantes.COUNTRY_MAP_KEY)));
+		if(!player.get(Constantes.RATING_MAP_KEY).isEmpty()) {
+			try {
+				laderboardType = objectMapper.readValue(player.get(Constantes.RATING_MAP_KEY), Map.class);
+				if(!laderboardType.get(Constantes.LADERBOARD_RM1V1_KEY).isEmpty()) {
+					this.autoUpdateRm1v1(member, profileId);
+				}
+				if(!laderboardType.get(Constantes.LADERBOARD_RMTG_KEY).isEmpty()) {
+					this.autoUpdateRmTg(member, profileId);
+				}
+				if(!laderboardType.get(Constantes.LADERBOARD_EW1V1_KEY).isEmpty()) {
+					this.autoUpdateEw1v1(member, profileId);
+				}
+				if(!laderboardType.get(Constantes.LADERBOARD_EWTG_KEY).isEmpty()) {
+					this.autoUpdateEwTg(member, profileId);
+				}
+				
+				member.updateWinRated();
+				
+				memberDao.save(member);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
 		}
-		System.out.println(id + player);
+		System.out.println(profileId + player);
 	}
 	
-	private CountryEnum getCountry(String countryId) {
-		List<CountryEnum> countryEnum = CountryEnum.getAllCountries();
-		return countryEnum.stream().filter(p -> p.getId().equals(countryId)).findFirst().get();
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public void autoUpdateRm1v1(Member member, String profileId) {
@@ -131,19 +147,18 @@ public class MemberServiceImpl implements MemberService {
 			if(!memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_1v1+profileId, String.class).isEmpty()) {
 				memberMap = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_1v1+profileId, String.class), Map.class);
 				if(memberMap != null) {
-					mld = memberMap.get("leaderboard");
-					if(!mld.get("steam_id").isEmpty())
-					member.setSteamId(Integer.valueOf(mld.get("steam_id")));
-					member.setRm1v1Rated(Integer.valueOf(mld.get("rating")));
-					member.setRm1v1highestRated(Integer.valueOf(mld.get("highest_rating")));
-					member.setRm1v1Streak(Integer.valueOf(mld.get("streak")));
-					member.setRm1v1TotalGames(Integer.valueOf(mld.get("games")));
-					member.setRm1v1NumWin(Integer.valueOf(mld.get("wins")));
-					member.setRm1v1NumLosses(Integer.valueOf(mld.get("losses")));
+					mld = memberMap.get(Constantes.LADERBOARD);
+					if(!mld.get(Constantes.STEAM_ID).isEmpty())
+					member.setSteamId(Integer.valueOf(mld.get(Constantes.STEAM_ID)));
+					member.setRm1v1Rated(Integer.valueOf(mld.get(Constantes.RATING)));
+					member.setRm1v1highestRated(Integer.valueOf(mld.get(Constantes.HIGHEST_RATING)));
+					member.setRm1v1Streak(Integer.valueOf(mld.get(Constantes.STREAK)));
+					member.setRm1v1TotalGames(Integer.valueOf(mld.get(Constantes.GAMES)));
+					member.setRm1v1NumWin(Integer.valueOf(mld.get(Constantes.WINS)));
+					member.setRm1v1NumLosses(Integer.valueOf(mld.get(Constantes.LOSSES)));
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -158,19 +173,18 @@ public class MemberServiceImpl implements MemberService {
 			if(!memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_TG+profileId, String.class).isEmpty()) {
 				memberMap = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_1v1+profileId, String.class), Map.class);
 				if(memberMap != null) {
-					mld = memberMap.get("leaderboard");
-					if(!mld.get("steam_id").isEmpty())
-					member.setSteamId(Integer.valueOf(mld.get("steam_id")));
-					member.setRmTgRated(Integer.valueOf(mld.get("rating")));
-					member.setRmTghighestRated(Integer.valueOf(mld.get("highest_rating")));
-					member.setRmTgStreak(Integer.valueOf(mld.get("streak")));
-					member.setRmTgTotalGames(Integer.valueOf(mld.get("games")));
-					member.setRmTgNumWin(Integer.valueOf(mld.get("wins")));
-					member.setRmTgNumLosses(Integer.valueOf(mld.get("losses")));
+					mld = memberMap.get(Constantes.LADERBOARD);
+					if(!mld.get(Constantes.STEAM_ID).isEmpty())
+					member.setSteamId(Integer.valueOf(mld.get(Constantes.STEAM_ID)));
+					member.setRmTgRated(Integer.valueOf(mld.get(Constantes.RATING)));
+					member.setRmTghighestRated(Integer.valueOf(mld.get(Constantes.HIGHEST_RATING)));
+					member.setRmTgStreak(Integer.valueOf(mld.get(Constantes.STREAK)));
+					member.setRmTgTotalGames(Integer.valueOf(mld.get(Constantes.GAMES)));
+					member.setRmTgNumWin(Integer.valueOf(mld.get(Constantes.WINS)));
+					member.setRmTgNumLosses(Integer.valueOf(mld.get(Constantes.LOSSES)));
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 }
@@ -185,19 +199,18 @@ public class MemberServiceImpl implements MemberService {
 			if(!memberRest.getForObject(Constantes.AOE_ENDPOINT_EW_1v1+profileId, String.class).isEmpty()) {
 				memberMap = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_1v1+profileId, String.class), Map.class);
 				if(memberMap != null) {
-					mld = memberMap.get("leaderboard");
-					if(!mld.get("steam_id").isEmpty())
-					member.setSteamId(Integer.valueOf(mld.get("steam_id")));
-					member.setEw1v1Rated(Integer.valueOf(mld.get("rating")));
-					member.setEw1v1highestRated(Integer.valueOf(mld.get("highest_rating")));
-					member.setEw1v1Streak(Integer.valueOf(mld.get("streak")));
-					member.setEw1v1TotalGames(Integer.valueOf(mld.get("games")));
-					member.setEw1v1NumWin(Integer.valueOf(mld.get("wins")));
-					member.setEw1v1NumLosses(Integer.valueOf(mld.get("losses")));
+					mld = memberMap.get(Constantes.LADERBOARD);
+					if(!mld.get(Constantes.STEAM_ID).isEmpty())
+					member.setSteamId(Integer.valueOf(mld.get(Constantes.STEAM_ID)));
+					member.setEw1v1Rated(Integer.valueOf(mld.get(Constantes.RATING)));
+					member.setEw1v1highestRated(Integer.valueOf(mld.get(Constantes.HIGHEST_RATING)));
+					member.setEw1v1Streak(Integer.valueOf(mld.get(Constantes.STREAK)));
+					member.setEw1v1TotalGames(Integer.valueOf(mld.get(Constantes.GAMES)));
+					member.setEw1v1NumWin(Integer.valueOf(mld.get(Constantes.WINS)));
+					member.setEw1v1NumLosses(Integer.valueOf(mld.get(Constantes.LOSSES)));
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -212,21 +225,19 @@ public class MemberServiceImpl implements MemberService {
 			if(!memberRest.getForObject(Constantes.AOE_ENDPOINT_EW_TG+profileId, String.class).isEmpty()) {
 				memberMap = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_ENDPOINT_RM_1v1+profileId, String.class), Map.class);
 				if(memberMap != null) {
-					mld = memberMap.get("leaderboard");
-					if(!mld.get("steam_id").isEmpty())
-					member.setSteamId(Integer.valueOf(mld.get("steam_id")));
-					member.setEwTgRated(Integer.valueOf(mld.get("rating")));
-					member.setEwTghighestRated(Integer.valueOf(mld.get("highest_rating")));
-					member.setEwTgStreak(Integer.valueOf(mld.get("streak")));
-					member.setEwTgTotalGames(Integer.valueOf(mld.get("games")));
-					member.setEwTgNumWin(Integer.valueOf(mld.get("wins")));
-					member.setEwTgNumLosses(Integer.valueOf(mld.get("losses")));
+					mld = memberMap.get(Constantes.LADERBOARD);
+					if(!mld.get(Constantes.STEAM_ID).isEmpty())
+					member.setSteamId(Integer.valueOf(mld.get(Constantes.STEAM_ID)));
+					member.setEwTgRated(Integer.valueOf(mld.get(Constantes.RATING)));
+					member.setEwTghighestRated(Integer.valueOf(mld.get(Constantes.HIGHEST_RATING)));
+					member.setEwTgStreak(Integer.valueOf(mld.get(Constantes.STREAK)));
+					member.setEwTgTotalGames(Integer.valueOf(mld.get(Constantes.GAMES)));
+					member.setEwTgNumWin(Integer.valueOf(mld.get(Constantes.WINS)));
+					member.setEwTgNumLosses(Integer.valueOf(mld.get(Constantes.LOSSES)));
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

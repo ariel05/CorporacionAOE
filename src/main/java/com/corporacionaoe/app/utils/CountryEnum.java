@@ -277,5 +277,10 @@ public enum CountryEnum {
     	
     	return allCountries;//(CountryEnum[]) allCountries.toArray(new CountryEnum[allCountries.size()]);
     }
-    
+
+    public static CountryEnum getCountry(String countryId) {
+		List<CountryEnum> countryEnum = CountryEnum.getAllCountries();
+		return countryEnum.stream().filter(p -> p.getId().equals(countryId)).findFirst().get();
+	}
+
 }
