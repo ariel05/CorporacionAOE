@@ -280,7 +280,11 @@ public enum CountryEnum {
 
     public static CountryEnum getCountry(String countryId) {
 		List<CountryEnum> countryEnum = CountryEnum.getAllCountries();
-		return countryEnum.stream().filter(p -> p.getId().equals(countryId)).findFirst().get();
+		for (CountryEnum ce : countryEnum) {
+			if(ce.getId().equals(countryId))
+				return ce;
+		}
+		return null;
 	}
 
 }

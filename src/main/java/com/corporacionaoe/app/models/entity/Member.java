@@ -20,7 +20,7 @@ public class Member implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer profileId;
-	private Integer steamId;
+	private Long steamId;
 	private String name;
 	@Enumerated(EnumType.STRING)
 	private CountryEnum country;
@@ -69,10 +69,10 @@ public class Member implements Serializable{
 	public void setProfileId(Integer profileId) {
 		this.profileId = profileId;
 	}
-	public Integer getSteamId() {
+	public Long getSteamId() {
 		return steamId;
 	}
-	public void setSteamId(Integer steamId) {
+	public void setSteamId(Long steamId) {
 		this.steamId = steamId;
 	}
 	public String getName() {
@@ -292,9 +292,13 @@ public class Member implements Serializable{
 	}
 	
 	public void updateWinRated() {
+		if(rm1v1TotalGames != 0)
 		rm1v1AvgWin = (rm1v1NumWin/rm1v1TotalGames) * 100;
+		if(rmTgTotalGames != 0)
 		rmTgAvgRated = (rmTgNumWin/rmTgTotalGames) * 100;
+		if(ew1v1TotalGames != 0)
 		ew1v1AvgRated = (ew1v1NumWin/ew1v1TotalGames) * 100;
+		if(ewTgTotalGames != 0)
 		ewTgAvgRated = (ewTgNumWin/ewTgTotalGames) * 100;
 	}
 
