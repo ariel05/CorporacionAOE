@@ -1,6 +1,7 @@
 package com.corporacionaoe.app.models.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,11 +26,12 @@ public interface MemberService {
 	
 	public void autoUpdate();
 	
-	public void autoUpdateRm1v1(Member member, String profileId);
+	public void autoUpdateRm1v1(Member member,  Map<String, Object> memberMap);
 
-	public void autoUpdateRmTg(Member member, String profileId);
+	public void autoUpdateRmTg(Member member,  Map<String, Object> memberMap);
 	
-	public void autoUpdateEw1v1(Member member, String profileId);
+	public void autoUpdateEw1v1(Member member,  Map<String, Object> memberMap);
 
-	public void autoUpdateEwTg(Member member, String profileId);
+	public void autoUpdateEwTg(Member member,  Map<String, Object> memberMap);
+
 }
