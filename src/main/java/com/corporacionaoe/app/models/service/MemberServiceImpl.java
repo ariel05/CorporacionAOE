@@ -85,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
 				clanes = objectMapper.readValue( memberRest.getForObject(Constantes.AOE_CLAN_API, String.class), Map.class);
 				logger.info("Carga de miembros del clan -------> Iniciando");
 				
-				logger.info("Comenzando la consulta por Clan ------->", Constantes.AOE_CLAN_API);
+				logger.info("Comenzando la consulta por Clan ------->  " + Constantes.AOE_CLAN_API);
 				
 				if(clanes != null) {
 					miembros = clanes.get(Constantes.CLAN).get(Constantes.PLAYERS);
@@ -119,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setName((String)player.get(Constantes.NAME_MAP_KEY));
 		member.setCountry(CountryEnum.getCountry((String)player.get(Constantes.COUNTRY_MAP_KEY)));
 		if(player.containsKey(Constantes.RATING_MAP_KEY)) {
-			logger.info("Comenzando la consulta por Player ------->", (String)player.get(Constantes.NAME_MAP_KEY));
+			logger.info("Comenzando la consulta por Player ------->  " +(String)player.get(Constantes.NAME_MAP_KEY));
 			laderboardType = (Map<String, String>)player.get(Constantes.RATING_MAP_KEY);
 			try {
 				if(laderboardType.containsKey(Constantes.LADERBOARD_RM1V1_KEY)) {
