@@ -3,7 +3,6 @@ package com.corporacionaoe.app.controllers;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -36,7 +35,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,18 +43,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.corporacionaoe.app.models.entity.Cliente;
 import com.corporacionaoe.app.models.service.IClienteService;
 import com.corporacionaoe.app.models.service.IUploadFileService;
-import com.corporacionaoe.app.models.service.MemberService;
 import com.corporacionaoe.app.util.paginator.PageRender;
-import com.corporacionaoe.app.view.xml.ClienteList;
+import com.corporacionaoe.app.utils.Utils;
 
 @Controller
 @SessionAttributes("cliente")
 public class ClienteController {
 
 	protected final Log logger = LogFactory.getLog(this.getClass());
-	
-	@Autowired
-	private MemberService ms;
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -83,7 +77,6 @@ public class ClienteController {
 				.body(recurso);
 
 	}
-	
 	@Secured("ROLE_USER")
 	@GetMapping(value = "/ver/{id}")
 	public String ver(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash) {
@@ -100,11 +93,9 @@ public class ClienteController {
 		return "ver";
 	}
 	
-	@RequestMapping(value = {"/listar", "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name="page", defaultValue = "0") int page, Model model,
 			Authentication authentication, HttpServletRequest request, Locale locale) {
-		
-		ms.autoUpdate();
 		
 		if(authentication != null) {
 			logger.info("Usuario autenticado, username: ".concat(authentication.getName()));
@@ -116,7 +107,7 @@ public class ClienteController {
 			logger.info("Usuario autenticado (obtenido de forma estática), username: ".concat(auth.getName()));
 		}
 		
-		if(hasRole("ROLE_ADMIN")) {
+		if(Utils.hasRole("ROLE_ADMIN")) {
 			logger.info("El usuario: ".concat(authentication.getName()).concat(" tiene acceso"));
 		}
 		else {
@@ -234,27 +225,5 @@ public class ClienteController {
 		return "redirect:/listar";
 	}
 	
-	private boolean hasRole(String role) {
-		SecurityContext context = SecurityContextHolder.getContext();
-		if(context == null) {
-			return false;
-		}
-		Authentication auth = context.getAuthentication();
-		if(auth == null) {
-			return false;
-		}
-		
-		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-		
-		return authorities.contains(new SimpleGrantedAuthority(role));
-		
-/*		for(GrantedAuthority authority: authorities) {
-			if(role.equals(authority.getAuthority())) {
-				logger.info("El usuario: ".concat(auth.getName()).concat(" | ROL: ").concat(authority.getAuthority()));
-				return true;
-			}
-		}
-		
-		return false;*/
-	}
+
 }

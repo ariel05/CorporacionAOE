@@ -22,7 +22,7 @@ import com.corporacionaoe.app.utils.CountryEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Service
+@Service("membersService")
 public class MemberServiceImpl implements MemberService {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,8 +40,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Page<Member> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.findAll(pageable);
 	}
 
 	@Override
@@ -98,6 +97,7 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 		} catch (JsonProcessingException | RestClientException e) {
+			logger.info(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -154,7 +154,7 @@ public class MemberServiceImpl implements MemberService {
 				member.updateWinRated();
 				memberDao.save(member);
 			} catch (JsonProcessingException | RestClientException e) {
-				// TODO Auto-generated catch block
+				logger.info(e.getMessage());
 				e.printStackTrace();
 			}
 			

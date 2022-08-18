@@ -1,11 +1,11 @@
 package com.corporacionaoe.app.models.dao;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.corporacionaoe.app.models.entity.Member;
 
-public interface IMemberDao extends CrudRepository<Member, Long> {
+public interface IMemberDao extends PagingAndSortingRepository<Member, Long> {
 	
 	@Query("select count(m)>0 from Member m where m.profileId =?1")
 	public boolean existByProfileId(Integer profileId);
